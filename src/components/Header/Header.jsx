@@ -1,48 +1,43 @@
-import React, { useState } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
-import { AppBar, Toolbar, IconButton, Button, Badge } from '@material-ui/core'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import CartPopover from './CartPopover'
+import React from 'react'
+import { makeStyles, useTheme } from '@material-ui/core/styles'
+import { AppBar, Toolbar, Button, useMediaQuery } from '@material-ui/core'
+
 import CurrencySelector from './CurrencySelector'
+import CartIconComponent from './CartIconComponent/CartIconComponent'
 
 const useStyles = makeStyles((theme) => ({
   Toolbar: {
-    justifyContent: ' space-between',
+    alignContent: 'center',
+    paddingLeft: 30,
+    paddingRight: 30,
   },
   menuButton: {
     marginRight: theme.spacing(2),
   },
-  title: {
-    flexGrow: 1,
-  },
 }))
 
-const Header = (props) => {
+const Header = () => {
   const classes = useStyles()
-  const [anchorElement, setAnchorElement] = useState(null)
-  const handleClosePopover = () => {
-    setAnchorElement(null)
-  }
+
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
     <AppBar position='static'>
       <Toolbar className={classes.Toolbar}>
-        <Button color='inherit'>Home</Button>
-        <CurrencySelector />
-        <IconButton
-          onClick={(e) => setAnchorElement(e.currentTarget)}
-          edge='start'
-          color='inherit'
-          aria-label='menu'
-        >
-          <Badge badgeContent={1} color='secondary'>
-            <ShoppingCartIcon fontSize='large' />
-          </Badge>
-        </IconButton>
-        <CartPopover
-          handleClosePopover={handleClosePopover}
-          anchorElement={anchorElement}
-        />
+        {isMobile ? (
+          <>
+            <div style={{ flexGrow: 1 }}></div>
+            <CartIconComponent />
+          </>
+        ) : (
+          <>
+            <Button color='inherit'>Home</Button>
+            <div style={{ flexGrow: 1 }}></div>
+            <CurrencySelector />
+            <CartIconComponent />
+          </>
+        )}
       </Toolbar>
     </AppBar>
   )

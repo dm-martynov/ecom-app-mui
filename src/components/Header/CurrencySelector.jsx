@@ -29,7 +29,7 @@ const CurrencySelector = () => {
     setCurrency(event.target.value)
   }
   return (
-    <FormControl>
+    <FormControl style={{ marginRight: 40 }}>
       <Select
         className={classes.select}
         defaultValue='USD'
