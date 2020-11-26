@@ -4,6 +4,7 @@ import { AppBar, Toolbar, Button, useMediaQuery } from '@material-ui/core'
 
 import CurrencySelector from './CurrencySelector'
 import CartIconComponent from './CartIconComponent/CartIconComponent'
+import Drawer from './Drawer/Drawer'
 
 const useStyles = makeStyles((theme) => ({
   Toolbar: {
@@ -27,6 +28,7 @@ const Header = () => {
       <Toolbar className={classes.Toolbar}>
         {isMobile ? (
           <>
+            <Drawer />
             <div style={{ flexGrow: 1 }}></div>
             <CartIconComponent />
           </>
