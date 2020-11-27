@@ -5,7 +5,8 @@ import { AppBar, Toolbar, Button, useMediaQuery } from '@material-ui/core'
 import CurrencySelector from './CurrencySelector'
 import CartIconComponent from './CartIconComponent/CartIconComponent'
 import Drawer from './Drawer/Drawer'
-
+import HomeIcon from '@material-ui/icons/Home'
+import DesktopSorting from './DesktopSorting'
 const useStyles = makeStyles((theme) => ({
   Toolbar: {
     alignContent: 'center',
@@ -34,8 +35,17 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Button color='inherit'>Home</Button>
+            <Button
+              size='large'
+              color='inherit'
+              startIcon={<HomeIcon fontSize='large' />}
+            >
+              Home
+            </Button>
             <div style={{ flexGrow: 1 }}></div>
+            <DesktopSorting />
+            <div style={{ flexGrow: 1 }}></div>
+
             <CurrencySelector />
             <CartIconComponent />
           </>

@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import MenuItem from '@material-ui/core/MenuItem'
 import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import { InputBase } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeCurrency } from '../../redux/sortingAndCurrency/sortingAndCurrency.actions'
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -12,27 +14,29 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #ced4da',
   },
 }))
-const BootstrapInput = withStyles((theme) => ({
+const BootstrapInput = withStyles({
   input: {
     position: 'relative',
 
     fontSize: 16,
     padding: '8px 20px 8px 10px',
   },
-}))(InputBase)
+})(InputBase)
 const CurrencySelector = () => {
-  const [currency, setCurrency] = useState('USD')
-
+  const dispatch = useDispatch()
+  const currencyState = useSelector(
+    (state) => state.sortingAndCurrency.currency
+  )
   const classes = useStyles()
   const handleCurrencyChange = (event) => {
-    setCurrency(event.target.value)
+    dispatch(changeCurrency(event.target.value))
   }
   return (
     <FormControl style={{ marginRight: 40 }}>
       <Select
         className={classes.select}
-        defaultValue='USD'
-        value={currency}
+        defaultValue={currencyState}
+        value={currencyState}
         onChange={handleCurrencyChange}
         input={<BootstrapInput />}
       >
