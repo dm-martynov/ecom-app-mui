@@ -1,7 +1,7 @@
-import { all, call } from 'redux-saga/effects'
+// import { all, call } from 'redux-saga/effects'
 
-function* rootSaga() {
-  yield all([call()])
-}
+// function* rootSaga() {
+//   yield all([call()])
+// }
 
-export default rootSaga
+// export default rootSaga
