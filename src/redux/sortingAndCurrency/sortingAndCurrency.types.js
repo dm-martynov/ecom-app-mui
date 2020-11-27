@@ -1,0 +1,11 @@
+const sortingAndCurrencyActionTypes = {
+  SORT_NAME_ASC: 'SORT_NAME_ASC',
+  SORT_NAME_DESC: 'SORT_NAME_DESC',
+  UNSORT_NAME: 'UNSORT_NAME',
+  SORT_PRICE_ASC: 'SORT_PRICE_ASC',
+  SORT_PRICE_DESC: 'SORT_PRICE_DESC',
+  UNSORT_PRICE: 'UNSORT_PRICE',
+  SET_CURRENCY: 'SET_CURRENCY',
+}
+
+export default sortingAndCurrencyActionTypes
