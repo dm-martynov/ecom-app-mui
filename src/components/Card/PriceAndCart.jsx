@@ -35,7 +35,11 @@ const PriceAndCart = (props) => {
   const { description, id, image, price, title } = props
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
-
+  const thisCartItem = cartItems.find((cartItem) => cartItem.id === id)
+  let quantity = 0
+  if (thisCartItem) {
+    quantity = thisCartItem.quantity
+  }
   const classes = useStyles()
   return (
     <CardActions disableSpacing={true} style={{ flexDirection: 'column' }}>
@@ -54,7 +58,7 @@ const PriceAndCart = (props) => {
             <AddIcon />
           </IconButton>
           <Typography variant='h6' className={classes.itemsAmount}>
-            2
+            {quantity}
           </Typography>
           <IconButton
             onClick={() =>
