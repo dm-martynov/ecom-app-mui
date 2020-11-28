@@ -19,23 +19,13 @@ const useStyles = makeStyles({
   title: {
     fontSize: 14,
   },
-  buttonsDiv: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  price: {
-    paddingLeft: 17,
-  },
-  addRemoveDiv: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-  },
-  itemsAmount: {
-    paddingLeft: 4,
-    paddingRight: 4,
+  hr: {
+    width: '90%',
+    border: 'none',
+    marginBottom: 0,
+    marginTop: 0,
+    backgroundColor: 'rgba(0, 0, 0, 0.28)',
+    height: 1,
   },
 })
 
@@ -59,6 +49,7 @@ const Card = (props) => {
           {description}
         </Typography>
       </CardContent>
+      <hr className={classes.hr} />
       <PriceAndCart {...props} />
     </MuiCard>
   )
