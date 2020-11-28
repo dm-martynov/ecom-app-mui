@@ -1,8 +1,9 @@
 import { Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import React from 'react'
-import Card from '../components/Card'
+import Card from '../components/Card/Card'
 import Header from '../components/Header/Header'
+import data from '../data'
 
 const useStyles = makeStyles({
   gridContainer: {
@@ -19,36 +20,11 @@ const Main = () => {
       <Header />
 
       <Grid container className={classes.gridContainer} spacing={3}>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4} lg={2}>
-          <Card />
-        </Grid>
+        {data.map((item) => (
+          <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
+            <Card {...item} />
+          </Grid>
+        ))}
       </Grid>
     </>
   )

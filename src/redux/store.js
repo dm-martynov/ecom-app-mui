@@ -13,5 +13,5 @@ export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares))
 )
-
+window.__store__ = store
 // sagaMiddleware.run(rootSaga)
