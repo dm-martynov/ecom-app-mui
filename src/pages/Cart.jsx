@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/Header/Header'
 
-const Basket = () => {
+const Cart = () => {
   return (
     <>
       <Header />
@@ -9,4 +9,4 @@ const Basket = () => {
   )
 }
 
-export default Basket
+export default Cart
