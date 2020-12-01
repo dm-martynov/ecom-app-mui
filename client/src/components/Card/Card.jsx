@@ -13,6 +13,8 @@ import { withStyles } from '@material-ui/core/styles'
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
+    borderWidth: 2,
+    borderColor: 'black',
   },
   media: {
     height: 200,
@@ -62,11 +64,17 @@ const Card = (props) => {
   const { description, image, title } = props
   const classes = useStyles()
   const [state, setstate] = React.useState(false)
+  const [isRisen, setRaised] = React.useState(false)
   const handleClick = () => {
     setstate(!state)
   }
   return (
-    <MuiCard className={classes.root}>
+    <MuiCard
+      onMouseOver={() => setRaised(true)}
+      onMouseOut={() => setRaised(false)}
+      raised={isRisen}
+      className={classes.root}
+    >
       <CardContent className={props.classes.cardcontent}>
         <CardActionArea onClick={handleClick}>
           <CardMedia component='img' className={classes.media} image={image} />
