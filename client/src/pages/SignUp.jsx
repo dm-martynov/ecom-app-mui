@@ -4,7 +4,6 @@ import {
   Box,
   Grid,
   Link,
-  TextField as TextFieldMui,
   CssBaseline,
   Button,
 } from '@material-ui/core'
@@ -52,13 +51,20 @@ const SignUp = () => {
           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
         ) {
           errors.email = 'Invalid email address'
-        } else if (
+        }
+        if (
+          // eslint-disable-next-line
           !/^(?=.*[\w])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/.test(
             values.password
           )
         ) {
           errors.password = 'Min. 6 char., 1 digit and 1 special char.'
-        } else if (values.password !== values.repeatPassword) {
+        }
+
+        if (!values.repeatPassword) {
+          errors.repeatPassword = 'Repeat password'
+        }
+        if (values.password !== values.repeatPassword) {
           errors.repeatPassword = "Passwords don't match"
         }
         return errors
@@ -126,12 +132,14 @@ const SignUp = () => {
                   />
                 </Grid>
               </Grid>
+
               <Button
-                type='submit'
                 fullWidth
                 variant='contained'
                 color='primary'
                 className={classes.submit}
+                disabled={Object.keys(errors).length === 0 ? false : true}
+                onClick={() => console.log(errors)}
               >
                 Sign Up
               </Button>
