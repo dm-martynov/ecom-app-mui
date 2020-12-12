@@ -1,8 +1,11 @@
-// import { all, call } from 'redux-saga/effects'
+import { all, call } from 'redux-saga/effects'
+import { authSagas } from './auth/auth.sagas'
 // import { sortingAndCurrencySagas } from './sortingAndCurrency/sortingAndCurrency.sagas'
 
-// function* rootSaga() {
-//   yield all([call(sortingAndCurrencySagas)])
-// }
+function* rootSaga() {
+  // yield all([call(sortingAndCurrencySagas)])
 
-// export default rootSaga
+  yield all([call(authSagas)])
+}
+
+export default rootSaga

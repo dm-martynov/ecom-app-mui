@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container'
 import { Link as RouterLink } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
+import { useDispatch } from 'react-redux'
+import { signUpStart } from '../redux/auth/auth.actions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUp = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -60,7 +63,9 @@ const SignUp = () => {
         ) {
           errors.password = 'Min. 6 char., 1 digit and 1 special char.'
         }
-
+        if (!values.name) {
+          errors.name = 'Required'
+        }
         if (!values.repeatPassword) {
           errors.repeatPassword = 'Repeat password'
         }
@@ -69,11 +74,8 @@ const SignUp = () => {
         }
         return errors
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          setSubmitting(false)
-          alert(JSON.stringify(values, null, 2))
-        }, 500)
+      onSubmit={(values) => {
+        dispatch(signUpStart(values))
       }}
     >
       {({ submitForm, isSubmitting, touched, errors }) => (
@@ -139,7 +141,7 @@ const SignUp = () => {
                 color='primary'
                 className={classes.submit}
                 disabled={Object.keys(errors).length === 0 ? false : true}
-                onClick={() => console.log(errors)}
+                onClick={submitForm}
               >
                 Sign Up
               </Button>

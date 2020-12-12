@@ -2,6 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 
 import rootReducer from './root-reducer'
+import rootSaga from './rootSaga'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -13,5 +14,7 @@ export const store = createStore(
   rootReducer,
   composeEnhancers(applyMiddleware(...middlewares))
 )
-window.__store__ = store
+
+sagaMiddleware.run(rootSaga)
+
 // sagaMiddleware.run(rootSaga)

@@ -4,10 +4,22 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const logsRoute = require('./routes/logs')
+const passport = require('passport')
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
 
 dotenv.config()
 
 const port = process.env.PORT || 3001
+
+app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
+app.use(passport.initialize())
+app.use(passport.session())
+
+require('./services/passport')(passport)
 
 mongoose.connect(
   process.env.DB_CONNECT,
@@ -15,7 +27,7 @@ mongoose.connect(
   () => console.log('connected to db!')
 )
 
-app.use(express.json())
+mongoose.connection.on('error', (err) => console.log('db error ' + err))
 
 app.use('/api/user', authRoute)
 app.use('/api/logs', logsRoute)

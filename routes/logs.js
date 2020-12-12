@@ -1,17 +1,21 @@
 const router = require('express').Router()
-const verify = require('./verifyToken')
+const passport = require('passport')
 
-router.get('/', verify, (req, res) => {
-  res.json([
-    {
-      action: 'changed currency from a to b',
-      time: '24.11',
-    },
-    {
-      action: 'changed currency from a to b',
-      time: '24.11',
-    },
-  ])
-})
+router.get(
+  '/',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.json([
+      {
+        action: 'changed currency from a to b',
+        time: '24.11',
+      },
+      {
+        action: 'changed currency from a to b',
+        time: '24.11',
+      },
+    ])
+  }
+)
 
 module.exports = router
