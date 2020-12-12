@@ -15,6 +15,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Link as RouterLink } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
+import { useDispatch } from 'react-redux'
+import { signInStart } from '../redux/auth/auth.actions'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return (
     <Formik
@@ -54,11 +57,8 @@ export default function SignIn() {
         }
         return errors
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          setSubmitting(false)
-          alert(JSON.stringify(values, null, 2))
-        }, 500)
+      onSubmit={(values) => {
+        dispatch(signInStart(values))
       }}
     >
       {({ submitForm, isSubmitting, touched, errors }) => (
@@ -104,7 +104,7 @@ export default function SignIn() {
                 color='primary'
                 className={classes.submit}
                 disabled={Object.keys(errors).length === 0 ? false : true}
-                onClick={() => console.log(errors)}
+                onClick={submitForm}
               >
                 Sign In
               </Button>

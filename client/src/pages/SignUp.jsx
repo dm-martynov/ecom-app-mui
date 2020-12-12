@@ -6,13 +6,14 @@ import {
   Link,
   CssBaseline,
   Button,
+  CircularProgress,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Container from '@material-ui/core/Container'
 import { Link as RouterLink } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { signUpStart } from '../redux/auth/auth.actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -32,12 +33,20 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 12,
     paddingBottom: 12,
   },
+  buttonProgress: {
+    color: 'green[500]',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }))
 
 const SignUp = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-
+  const loading = useSelector((state) => state.auth.loading)
   return (
     <Formik
       initialValues={{
@@ -57,11 +66,9 @@ const SignUp = () => {
         }
         if (
           // eslint-disable-next-line
-          !/^(?=.*[\w])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/.test(
-            values.password
-          )
+          !/.{6,}/.test(values.password)
         ) {
-          errors.password = 'Min. 6 char., 1 digit and 1 special char.'
+          errors.password = 'Password should contain at least 6 characters '
         }
         if (!values.name) {
           errors.name = 'Required'
@@ -134,17 +141,25 @@ const SignUp = () => {
                   />
                 </Grid>
               </Grid>
+              <div style={{ position: 'relative' }}>
+                <Button
+                  fullWidth
+                  variant='contained'
+                  color='primary'
+                  disabled={loading}
+                  className={classes.submit}
+                  onClick={submitForm}
+                >
+                  Sign Up
+                </Button>
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    className={classes.buttonProgress}
+                  />
+                )}
+              </div>
 
-              <Button
-                fullWidth
-                variant='contained'
-                color='primary'
-                className={classes.submit}
-                disabled={Object.keys(errors).length === 0 ? false : true}
-                onClick={submitForm}
-              >
-                Sign Up
-              </Button>
               <Grid container justify='flex-end'>
                 <Grid item>
                   <Link component={RouterLink} to='/sign-in' variant='body2'>
