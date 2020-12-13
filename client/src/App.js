@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 
 import './App.css'
 import Cart from './pages/Cart'
@@ -7,18 +7,31 @@ import Main from './pages/Main'
 import Logs from './pages/Logs'
 import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import { ConnectedRouter } from 'connected-react-router'
+import { history } from './redux/store'
+import { useSelector } from 'react-redux'
 
-function App() {
+const App = () => {
+  const currentUser = useSelector((state) => state.auth.currentUser)
+
   return (
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <div className='App'>
-        <Route exact path='/' component={Main} />
-        <Route exact path='/cart' component={Cart} />
-        <Route exact path='/logs' component={Logs} />
-        <Route exact path='/sign-in' component={SignIn} />
-        <Route exact path='/sign-up' component={SignUp} />
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() =>
+              !currentUser ? <Redirect to='/sign-in' /> : <Main />
+            }
+          />
+          <Route exact path='/cart' component={Cart} />
+          <Route exact path='/logs' component={Logs} />
+          <Route exact path='/sign-in' component={SignIn} />
+          <Route exact path='/sign-up' component={SignUp} />
+        </Switch>
       </div>
-    </BrowserRouter>
+    </ConnectedRouter>
   )
 }
 

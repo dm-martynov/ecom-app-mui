@@ -2,10 +2,7 @@ import { Button, ButtonGroup, makeStyles } from '@material-ui/core'
 import React from 'react'
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  sortName,
-  sortPrice,
-} from '../../redux/sortingAndCurrency/sortingAndCurrency.actions'
+import { sortName, sortPrice } from '../../redux/products/products.actions'
 import clsx from 'clsx'
 
 const useStyles = makeStyles((theme) => ({
@@ -37,12 +34,8 @@ const useStyles = makeStyles((theme) => ({
 const DesktopSorting = () => {
   const classes = useStyles()
   const dispatch = useDispatch()
-  const priceSortState = useSelector(
-    (state) => state.sortingAndCurrency.sorting.price
-  )
-  const nameSortState = useSelector(
-    (state) => state.sortingAndCurrency.sorting.name
-  )
+  const priceSortState = useSelector((state) => state.products.sorting.price)
+  const nameSortState = useSelector((state) => state.products.sorting.name)
 
   const handlePriceClick = () => {
     if (priceSortState === null) {

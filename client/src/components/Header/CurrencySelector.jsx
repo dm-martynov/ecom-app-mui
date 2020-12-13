@@ -5,7 +5,7 @@ import FormControl from '@material-ui/core/FormControl'
 import Select from '@material-ui/core/Select'
 import { InputBase } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeCurrency } from '../../redux/sortingAndCurrency/sortingAndCurrency.actions'
+import { changeCurrency } from '../../redux/products/products.actions'
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -24,9 +24,7 @@ const BootstrapInput = withStyles({
 })(InputBase)
 const CurrencySelector = () => {
   const dispatch = useDispatch()
-  const currencyState = useSelector(
-    (state) => state.sortingAndCurrency.currency
-  )
+  const currencyState = useSelector((state) => state.products.currency)
   const classes = useStyles()
   const handleCurrencyChange = (event) => {
     dispatch(changeCurrency(event.target.value))

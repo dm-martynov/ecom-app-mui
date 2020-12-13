@@ -2,10 +2,10 @@ import { takeLatest, put, all, call } from 'redux-saga/effects'
 
 import AuthActionTypes from './auth.types'
 import { signInRequest, signUpRequest } from '../../api/api'
-import { authFailure, signUpSuccess, toggleLoading } from './auth.actions'
-import { useHistory } from 'react-router-dom'
+import { authFailure, signInSuccess, toggleAuthLoading } from './auth.actions'
+import { push } from 'connected-react-router'
+import { getProductsStart } from '../products/products.actions'
 
-let history = useHistory()
 // export function* getSnapshotFromUserAuth(userAuth) {
 //   try {
 //     const userRef = yield call(createUserProfileDocument, userAuth);
@@ -18,7 +18,12 @@ let history = useHistory()
 
 export function* signIn({ payload: { email, password } }) {
   try {
-    yield signInRequest(email, password)
+    yield put(toggleAuthLoading())
+    const userData = yield signInRequest(email, password)
+    yield put(signInSuccess(userData))
+    yield put(toggleAuthLoading())
+    yield put(getProductsStart())
+    yield put(push('/'))
   } catch (error) {
     yield put(authFailure(error))
   }
@@ -45,11 +50,11 @@ export function* signIn({ payload: { email, password } }) {
 
 export function* signUp({ payload: { name, email, password } }) {
   try {
-    yield put(toggleLoading())
+    yield put(toggleAuthLoading())
     yield signUpRequest(name, email, password)
-    yield put(toggleLoading())
+    yield put(toggleAuthLoading())
 
-    yield history.push('/sign-in')
+    yield put(push('/sign-in'))
   } catch (error) {
     yield put(authFailure(error))
   }

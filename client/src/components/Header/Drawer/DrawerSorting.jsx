@@ -9,10 +9,7 @@ import {
   makeStyles,
 } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  sortName,
-  sortPrice,
-} from '../../../redux/sortingAndCurrency/sortingAndCurrency.actions'
+import { sortName, sortPrice } from '../../../redux/products/products.actions'
 
 const useStyles = makeStyles({
   listItemInitial: { color: 'rgba(0, 0, 0, 0.42)' },
@@ -23,12 +20,8 @@ const useStyles = makeStyles({
 
 const DrawerSorting = () => {
   const dispatch = useDispatch()
-  const priceSortState = useSelector(
-    (state) => state.sortingAndCurrency.sorting.price
-  )
-  const nameSortState = useSelector(
-    (state) => state.sortingAndCurrency.sorting.name
-  )
+  const priceSortState = useSelector((state) => state.products.sorting.price)
+  const nameSortState = useSelector((state) => state.products.sorting.name)
 
   const handlePriceClick = () => {
     if (priceSortState === null) {

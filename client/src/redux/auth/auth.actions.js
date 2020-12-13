@@ -41,6 +41,6 @@ export const signOutSuccess = (userData) => ({
   payload: userData,
 })
 
-export const toggleLoading = () => ({
-  type: AuthActionTypes.TOGGLE_LOADING,
+export const toggleAuthLoading = () => ({
+  type: AuthActionTypes.TOGGLE_AUTH_LOADING,
 })

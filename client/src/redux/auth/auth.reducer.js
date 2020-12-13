@@ -3,7 +3,6 @@ import AuthActionTypes from './auth.types'
 const INITIAL_STATE = {
   currentUser: null,
   error: null,
-  signUpStatus: null,
   loading: false,
 }
 
@@ -27,7 +26,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         error: action.payload,
       }
-    case AuthActionTypes.TOGGLE_LOADING:
+    case AuthActionTypes.TOGGLE_AUTH_LOADING:
       return {
         ...state,
         loading: !state.loading,

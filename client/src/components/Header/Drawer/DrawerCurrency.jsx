@@ -8,7 +8,7 @@ import React from 'react'
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney'
 import EuroIcon from '@material-ui/icons/Euro'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeCurrency } from '../../../redux/sortingAndCurrency/sortingAndCurrency.actions'
+import { changeCurrency } from '../../../redux/products/products.actions'
 import CadIcon from '../../../icons/canadian-dollar.svg'
 import './cadIcon.css'
 
@@ -19,9 +19,7 @@ const useStyles = makeStyles({
 
 const DrawerCurrency = () => {
   const dispatch = useDispatch()
-  const currencyState = useSelector(
-    (state) => state.sortingAndCurrency.currency
-  )
+  const currencyState = useSelector((state) => state.products.currency)
   const classes = useStyles()
 
   return (

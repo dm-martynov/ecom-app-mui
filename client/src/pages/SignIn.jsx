@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import {
   FormControlLabel,
@@ -10,12 +10,13 @@ import {
   Button,
   Container,
   Checkbox,
+  CircularProgress,
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Link as RouterLink } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
 import { TextField } from 'formik-material-ui'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { signInStart } from '../redux/auth/auth.actions'
 
 const useStyles = makeStyles((theme) => ({
@@ -35,11 +36,20 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 12,
     paddingBottom: 12,
   },
+  buttonProgress: {
+    color: 'green[500]',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }))
 
 export default function SignIn() {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const loading = useSelector((state) => state.auth.loading)
 
   return (
     <Formik
@@ -98,16 +108,26 @@ export default function SignIn() {
                 control={<Checkbox value='remember' color='primary' />}
                 label='Remember me'
               />
-              <Button
-                fullWidth
-                variant='contained'
-                color='primary'
-                className={classes.submit}
-                disabled={Object.keys(errors).length === 0 ? false : true}
-                onClick={submitForm}
-              >
-                Sign In
-              </Button>
+
+              <div style={{ position: 'relative' }}>
+                <Button
+                  fullWidth
+                  variant='contained'
+                  color='primary'
+                  disabled={loading}
+                  className={classes.submit}
+                  onClick={submitForm}
+                >
+                  Sign In
+                </Button>
+                {loading && (
+                  <CircularProgress
+                    size={24}
+                    className={classes.buttonProgress}
+                  />
+                )}
+              </div>
+
               <Grid container>
                 <Grid item xs>
                   <Link href='#' variant='body2'>
