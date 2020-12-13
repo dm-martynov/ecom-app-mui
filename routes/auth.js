@@ -46,8 +46,9 @@ router.post('/login', async (req, res) => {
       expiresIn: '48h',
     }
   )
-  const { _id, name, email, date } = userDataFromDB
-  res.json({ status: 'ok', token, _id, name, email, date })
+  const { _id, name, email } = userDataFromDB
+
+  res.json({ status: 'ok', token, _id, name, email })
 })
 
 module.exports = router
