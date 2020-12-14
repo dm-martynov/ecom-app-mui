@@ -44,3 +44,7 @@ export const productsOperationFailure = (error) => ({
   type: productsActionTypes.PRODUCTS_OPERATION_FAILURE,
   payload: error,
 })
+
+export const hasMoreProductsToggle = () => ({
+  type: productsActionTypes.PRODUCTS_OPERATION_FAILURE,
+})

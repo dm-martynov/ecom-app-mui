@@ -4,6 +4,7 @@ import {
   toggleProductsLoading,
   getProductsSuccess,
   productsOperationFailure,
+  hasMoreProductsToggle,
 } from './products.actions'
 import { getProductsRequest } from '../../api/api'
 // import { getRates } from '../../api/api'
@@ -30,7 +31,11 @@ export function* getProducts({ payload: { limit, skip } }) {
   try {
     yield put(toggleProductsLoading())
     const products = yield getProductsRequest(limit, skip)
-    yield put(getProductsSuccess(products))
+    if (products.length) {
+      yield put(getProductsSuccess(products))
+    } else {
+      yield put(hasMoreProductsToggle())
+    }
     yield put(toggleProductsLoading())
   } catch (error) {
     yield put(productsOperationFailure(error))

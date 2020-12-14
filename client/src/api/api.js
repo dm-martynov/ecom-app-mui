@@ -50,14 +50,12 @@ export const signInRequest = async (email, password) => {
 export const getProductsRequest = async (limit, skip) => {
   try {
     const authToken = cookies.get('jwt-token')
-    const response = await instance.get(
-      `products/get?skip=${skip}&limit=${limit}`,
-      {
-        headers: {
-          Authorization: 'Bearer ' + authToken,
-        },
-      }
-    )
+    const response = await instance.get('products/get', {
+      headers: {
+        Authorization: 'Bearer ' + authToken,
+      },
+      params: { skip: skip, limit: limit },
+    })
 
     return response.data
   } catch (error) {

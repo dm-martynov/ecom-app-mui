@@ -104,10 +104,6 @@ export default function SignIn() {
                   />
                 </Grid>
               </Grid>
-              <FormControlLabel
-                control={<Checkbox value='remember' color='primary' />}
-                label='Remember me'
-              />
 
               <div style={{ position: 'relative' }}>
                 <Button

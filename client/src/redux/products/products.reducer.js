@@ -1,13 +1,15 @@
 import productsActionTypes from './products.types'
+import { addingProducts } from './products.utils'
 
 const INITIAL_STATE = {
   productsLoading: false,
-  productsArr: null,
+  productsArr: [],
   currency: 'USD',
   sorting: {
     name: null,
     price: null,
   },
+  hasMore: true,
   error: null,
 }
 
@@ -40,13 +42,25 @@ const productsReducer = (state = INITIAL_STATE, action) => {
     case productsActionTypes.GET_PRODUCTS_SUCCESS:
       return {
         ...state,
-        productsArr: action.payload,
+        productsArr: addingProducts(state.productsArr, action.payload),
         error: null,
       }
     case productsActionTypes.PRODUCTS_OPERATION_FAILURE:
       return {
         ...state,
         error: action.payload,
+      }
+
+    case productsActionTypes.TOGGLE_PRODUCTS_LOADING:
+      return {
+        ...state,
+        productsLoading: !state.productsLoading,
+      }
+
+    case productsActionTypes.HAS_MORE_PRODUCTS_TOGGLE:
+      return {
+        ...state,
+        hasMore: !state.hasMore,
       }
 
     default:
