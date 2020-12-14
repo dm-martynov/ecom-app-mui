@@ -22,7 +22,6 @@ export function* signIn({ payload: { email, password } }) {
     const userData = yield signInRequest(email, password)
     yield put(signInSuccess(userData))
     yield put(toggleAuthLoading())
-    yield put(getProductsStart())
     yield put(push('/'))
   } catch (error) {
     yield put(authFailure(error))

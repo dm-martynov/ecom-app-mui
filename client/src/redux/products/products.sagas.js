@@ -1,10 +1,11 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects'
 import productsActionTypes from './products.types'
-import toggleProductsLoading, {
+import {
+  toggleProductsLoading,
   getProductsSuccess,
   productsOperationFailure,
 } from './products.actions'
-import getProductsRequest from '../../api/api'
+import { getProductsRequest } from '../../api/api'
 // import { getRates } from '../../api/api'
 // import productsActionTypes from 'products.types'
 
@@ -25,10 +26,10 @@ import getProductsRequest from '../../api/api'
 //   )
 // }
 
-export function* getProducts() {
+export function* getProducts({ payload: { limit, skip } }) {
   try {
     yield put(toggleProductsLoading())
-    const products = yield getProductsRequest()
+    const products = yield getProductsRequest(limit, skip)
     yield put(getProductsSuccess(products))
     yield put(toggleProductsLoading())
   } catch (error) {
@@ -40,6 +41,6 @@ export function* onGetProductsStart() {
   yield takeLatest(productsActionTypes.GET_PRODUCTS_START, getProducts)
 }
 
-export function* authSagas() {
+export function* productsSagas() {
   yield all([call(onGetProductsStart)])
 }

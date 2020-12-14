@@ -1,6 +1,7 @@
 import productsActionTypes from './products.types'
 
 const INITIAL_STATE = {
+  productsLoading: false,
   productsArr: null,
   currency: 'USD',
   sorting: {

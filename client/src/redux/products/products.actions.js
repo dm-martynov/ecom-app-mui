@@ -21,9 +21,10 @@ export const changeCurrency = (currency) => {
   }
 }
 
-export const getProductsStart = () => {
+export const getProductsStart = (paginationData) => {
   return {
     type: productsActionTypes.GET_PRODUCTS_START,
+    payload: paginationData,
   }
 }
 export const getProductsSuccess = (productsData) => {
@@ -35,7 +36,7 @@ export const getProductsSuccess = (productsData) => {
 
 export const toggleProductsLoading = () => {
   return {
-    type: productsActionTypes.GET_PRODUCTS_START,
+    type: productsActionTypes.TOGGLE_PRODUCTS_LOADING,
   }
 }
 

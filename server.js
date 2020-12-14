@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv')
 const authRoute = require('./routes/auth')
 const logsRoute = require('./routes/logs')
+const productsRoute = require('./routes/getProducts')
 const passport = require('passport')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
@@ -29,9 +30,14 @@ mongoose.connect(
   () => console.log('connected to db!')
 )
 
-mongoose.connection.on('error', (err) => console.log('db error ' + err))
+const db = mongoose.connection
+
+db.on('error', (err) => console.log('db error ' + err))
 
 app.use('/api/user', authRoute)
 app.use('/api/logs', logsRoute)
+app.use('/api/products', productsRoute)
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`))
+
+module.exports = db
