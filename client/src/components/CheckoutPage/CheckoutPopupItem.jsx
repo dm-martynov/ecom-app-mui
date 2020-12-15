@@ -1,5 +1,6 @@
 import { Divider, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
+import { useSelector } from 'react-redux'
 
 const useStyles = makeStyles({
   itemContainer: {
@@ -23,6 +24,7 @@ const CartItem = (props) => {
   const { image, quantity, title, price } = props.item
 
   const classes = useStyles()
+  const currency = useSelector((state) => state.products.currency)
 
   return (
     <>
@@ -34,7 +36,15 @@ const CartItem = (props) => {
           <Typography className={classes.title}>{title}</Typography>
           <Typography>{`${quantity} pcs.`}</Typography>
         </div>
-        <Typography>{` $${price}`}</Typography>
+        <Typography>
+          {currency === 'USD'
+            ? ` $${price.USD}`
+            : currency === 'CAD'
+            ? `CAN$${price.CAD}`
+            : currency === 'EUR'
+            ? ` €${price.EUR}`
+            : ` $${price.USD}`}
+        </Typography>
       </div>
       <Divider />
     </>

@@ -1,9 +1,13 @@
-import { CircularProgress, Grid } from '@material-ui/core'
+import {
+  CircularProgress,
+  Grid,
+  useMediaQuery,
+  useTheme,
+} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import React, { useRef, useState, useCallback } from 'react'
 import Card from '../components/Card/Card'
 import Header from '../components/Header/Header'
-import { isMobile } from 'react-device-detect'
 import useProductsRequest from '../customHooks/useProductsRequest'
 
 const useStyles = makeStyles({
@@ -16,6 +20,10 @@ const useStyles = makeStyles({
 })
 
 const Main = () => {
+  const theme = useTheme()
+
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
   let limit = 30
   if (isMobile) limit = 10
   const classes = useStyles()

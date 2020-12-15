@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Popover as PopoverMUI, Typography } from '@material-ui/core/'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import CartItem from '../../CartComponents/CartItem'
+import CartItem from '../../CheckoutPage/CheckoutPopupItem'
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -65,7 +65,7 @@ const CartPopover = (props) => {
         className={
           cartItems.length ? classes.buttonWithItems : classes.buttonNoItems
         }
-        onClick={() => history.push('/cart')}
+        onClick={() => history.push('/checkout')}
         variant='outlined'
         color='primary'
       >

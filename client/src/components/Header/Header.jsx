@@ -7,6 +7,7 @@ import CartIconComponent from './CartIconComponent/CartIconComponent'
 import Drawer from './Drawer/Drawer'
 import HomeIcon from '@material-ui/icons/Home'
 import DesktopSorting from './DesktopSorting'
+import { useHistory } from 'react-router-dom'
 const useStyles = makeStyles((theme) => ({
   Toolbar: {
     alignContent: 'center',
@@ -22,7 +23,8 @@ const Header = () => {
   const classes = useStyles()
 
   const theme = useTheme()
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  const history = useHistory()
 
   return (
     <AppBar position='fixed'>
@@ -39,6 +41,7 @@ const Header = () => {
               size='large'
               color='inherit'
               startIcon={<HomeIcon fontSize='large' />}
+              onClick={() => history.push('/')}
             >
               Home
             </Button>
