@@ -25,7 +25,7 @@ const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'))
 
   return (
-    <AppBar position='static'>
+    <AppBar position='fixed'>
       <Toolbar className={classes.Toolbar}>
         {isMobile ? (
           <>

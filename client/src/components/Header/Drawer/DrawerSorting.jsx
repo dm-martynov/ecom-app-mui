@@ -14,7 +14,7 @@ import { sortName, sortPrice } from '../../../redux/products/products.actions'
 const useStyles = makeStyles({
   listItemInitial: { color: 'rgba(0, 0, 0, 0.42)' },
   listItemClicked: { backgroundColor: 'rgba(0, 0, 0, 0.08)' },
-  iconInitial: { transition: '1s' },
+  iconInitial: { transition: '0.6s' },
   iconRotate: { transform: 'rotate(180deg)' },
 })
 

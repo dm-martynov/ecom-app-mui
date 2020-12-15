@@ -19,7 +19,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         sorting: {
-          ...state.sorting,
+          price: null,
           name: action.payload,
         },
       }
@@ -28,7 +28,7 @@ const productsReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         sorting: {
-          ...state.sorting,
+          name: null,
           price: action.payload,
         },
       }

@@ -35,6 +35,7 @@ const PriceAndCart = (props) => {
   const { description, id, image, price, title } = props
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
+  const currency = useSelector((state) => state.products.currency)
   const thisCartItem = cartItems.find((cartItem) => cartItem.id === id)
   let quantity = 0
   if (thisCartItem) {
@@ -44,10 +45,15 @@ const PriceAndCart = (props) => {
   return (
     <CardActions disableSpacing={true} style={{ flexDirection: 'column' }}>
       <div className={classes.buttonsDiv}>
-        <Typography
-          variant='h6'
-          className={classes.price}
-        >{`$${price}`}</Typography>
+        <Typography variant='h6' className={classes.price}>
+          {currency === 'USD'
+            ? `$${price.USD}`
+            : currency === 'CAD'
+            ? `CAN$${price.CAD}`
+            : currency === 'EUR'
+            ? `€${price.EUR}`
+            : `$${price.USD}`}
+        </Typography>
         <div className={classes.addRemoveDiv}>
           <IconButton
             onClick={() =>

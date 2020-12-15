@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     paddingTop: '30px',
     paddingLeft: '50px',
     paddingRight: '50px',
+    marginTop: '50px',
   },
 })
 
@@ -58,10 +59,7 @@ const Main = () => {
         )}
 
         {products && !productsLoading && hasMore && (
-          <li
-            ref={gettingProductsTrigger}
-            style={{ background: 'transparent' }}
-          ></li>
+          <div ref={gettingProductsTrigger}></div>
         )}
       </Grid>
     </>
