@@ -1,6 +1,7 @@
 import { Divider, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { selectCurrentCurrency } from '../../redux/products/products.selectors'
 
 const useStyles = makeStyles({
   itemContainer: {
@@ -24,7 +25,7 @@ const CartItem = (props) => {
   const { image, quantity, title, price } = props.item
 
   const classes = useStyles()
-  const currency = useSelector((state) => state.products.currency)
+  const currency = useSelector(selectCurrentCurrency)
 
   return (
     <>

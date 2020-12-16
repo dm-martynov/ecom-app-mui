@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { selectCurrentCurrency } from '../products/products.selectors'
 
 const selectCart = (state) => state.cart
 
@@ -17,6 +18,32 @@ export const selectCartItemsCount = createSelector(
   (cartItems) => cartItems.reduce((acc, rec) => acc + rec.quantity, 0)
 )
 
-export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
-  cartItems.reduce((acc, rec) => acc + rec.quantity * rec.price, 0)
+export const selectCartTotal = createSelector(
+  [selectCartItems, selectCurrentCurrency],
+  (cartItems, currency) => {
+    if (currency === 'USD') {
+      const priceWithCurrency = cartItems.reduce(
+        (acc, rec) => acc + rec.quantity * rec.price.USD,
+        0
+      )
+
+      return `$${priceWithCurrency}`
+    }
+
+    if (currency === 'CAD') {
+      const priceWithCurrency = cartItems.reduce(
+        (acc, rec) => acc + rec.quantity * rec.price.CAD,
+        0
+      )
+      return `CAN$${priceWithCurrency}`
+    }
+
+    if (currency === 'EUR') {
+      const priceWithCurrency = cartItems.reduce(
+        (acc, rec) => acc + rec.quantity * rec.price.EUR,
+        0
+      )
+      return `€${priceWithCurrency}`
+    }
+  }
 )

@@ -9,6 +9,11 @@ export const selectProductsArr = createSelector(
   (products) => products.productsArr
 )
 
+export const selectCurrentCurrency = createSelector(
+  [selectProducts],
+  (products) => products.currency
+)
+
 export const selectAndFilterProductsByPriceAsc = createSelector(
   [selectProductsArr],
   (productsArr) => {

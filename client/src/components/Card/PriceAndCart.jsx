@@ -9,6 +9,7 @@ import AddIcon from '@material-ui/icons/Add'
 import RemoveIcon from '@material-ui/icons/Remove'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, removeItem } from '../../redux/cart/cart.actions'
+import { selectCurrentCurrency } from '../../redux/products/products.selectors'
 
 const useStyles = makeStyles({
   buttonsDiv: {
@@ -35,7 +36,7 @@ const PriceAndCart = (props) => {
   const { description, id, image, price, title } = props
   const dispatch = useDispatch()
   const cartItems = useSelector((state) => state.cart.cartItems)
-  const currency = useSelector((state) => state.products.currency)
+  const currency = useSelector(selectCurrentCurrency)
   const thisCartItem = cartItems.find((cartItem) => cartItem.id === id)
   let quantity = 0
   if (thisCartItem) {

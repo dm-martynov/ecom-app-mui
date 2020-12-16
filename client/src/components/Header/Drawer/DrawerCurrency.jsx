@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from '../../../redux/products/products.actions'
 import CadIcon from '../../../icons/canadian-dollar.svg'
 import './cadIcon.css'
+import { selectCurrentCurrency } from '../../../redux/products/products.selectors'
 
 const useStyles = makeStyles({
   listItemUnchecked: { color: 'rgba(0, 0, 0, 0.42)' },
@@ -19,7 +20,7 @@ const useStyles = makeStyles({
 
 const DrawerCurrency = () => {
   const dispatch = useDispatch()
-  const currencyState = useSelector((state) => state.products.currency)
+  const currencyState = useSelector(selectCurrentCurrency)
   const classes = useStyles()
 
   return (

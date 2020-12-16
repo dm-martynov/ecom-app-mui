@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3001/api/',
+  baseURL: 'http://localhost:5000/api/',
 })
 
 export const getRates = async () => {
@@ -56,6 +56,30 @@ export const getProductsRequest = async (limit, skip) => {
       },
       params: { skip: skip, limit: limit },
     })
+
+    return response.data
+  } catch (error) {
+    return error
+  }
+}
+
+export const paymentRequest = async (stripePrice, token, currency) => {
+  try {
+    const authToken = await cookies.get('jwt-token')
+
+    const response = await instance.post(
+      'payment',
+      {
+        amount: stripePrice,
+        token,
+        currency,
+      },
+      {
+        headers: {
+          Authorization: 'Bearer ' + authToken,
+        },
+      }
+    )
 
     return response.data
   } catch (error) {

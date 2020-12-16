@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select'
 import { InputBase } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { changeCurrency } from '../../redux/products/products.actions'
+import { selectCurrentCurrency } from '../../redux/products/products.selectors'
 
 const useStyles = makeStyles((theme) => ({
   select: {
@@ -24,7 +25,7 @@ const BootstrapInput = withStyles({
 })(InputBase)
 const CurrencySelector = () => {
   const dispatch = useDispatch()
-  const currencyState = useSelector((state) => state.products.currency)
+  const currencyState = useSelector(selectCurrentCurrency)
   const classes = useStyles()
   const handleCurrencyChange = (event) => {
     dispatch(changeCurrency(event.target.value))
