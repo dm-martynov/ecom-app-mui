@@ -75,7 +75,9 @@ const DesktopCheckoutView = () => {
                     >
                       <AddIcon fontSize='inherit' />
                     </IconButton>
-                    <Typography>{product.quantity}</Typography>
+                    <Typography style={{ fontWeight: 500, fontSize: '1.2rem' }}>
+                      {product.quantity}
+                    </Typography>
                     <IconButton
                       aria-label='remove'
                       size='medium'
@@ -86,13 +88,15 @@ const DesktopCheckoutView = () => {
                   </div>
                 </TableCell>
                 <TableCell align='center'>
-                  {currency === 'USD'
-                    ? ` $${product.price.USD}`
-                    : currency === 'CAD'
-                    ? `CAN$${product.price.CAD}`
-                    : currency === 'EUR'
-                    ? ` €${product.price.EUR}`
-                    : ` $${product.price.USD}`}
+                  <Typography style={{ fontWeight: 500, fontSize: '1rem' }}>
+                    {currency === 'USD'
+                      ? ` $${product.price.USD}`
+                      : currency === 'CAD'
+                      ? `CAN$${product.price.CAD}`
+                      : currency === 'EUR'
+                      ? ` €${product.price.EUR}`
+                      : ` $${product.price.USD}`}
+                  </Typography>
                 </TableCell>
                 <TableCell align='center'>
                   <IconButton
@@ -116,12 +120,15 @@ const DesktopCheckoutView = () => {
         </Table>
       </TableContainer>
 
-      <div className='test-warning'>
+      <div className='test-warning' style={{ marginTop: 30 }}>
         *Please use the following test credit card for payments
         <br />
         4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
       </div>
-      <StripeCheckoutButton price={total} />
+      <StripeCheckoutButton
+        style={{ marginTop: 20, width: '20%' }}
+        price={total}
+      />
     </>
   )
 }

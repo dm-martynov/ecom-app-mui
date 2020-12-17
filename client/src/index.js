@@ -4,23 +4,23 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { Provider } from 'react-redux'
-import configureStore, { history } from './redux/store'
+import { history, configureStore } from './redux/store'
 import { ConnectedRouter } from 'connected-react-router'
+import { PersistGate } from 'redux-persist/integration/react'
 
-const store = configureStore(/* provide initial state if any */)
+const { store, persistor } = configureStore()
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <ConnectedRouter history={history}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </ConnectedRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 )
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals()

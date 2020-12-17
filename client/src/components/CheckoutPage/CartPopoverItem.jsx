@@ -2,6 +2,7 @@ import { Divider, makeStyles, Typography } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectCurrentCurrency } from '../../redux/products/products.selectors'
+import { returnPriceWithCurrency } from '../../redux/products/products.utils'
 
 const useStyles = makeStyles({
   itemContainer: {
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
   },
 })
 
-const CartItem = (props) => {
+const CartPopoverItem = (props) => {
   const { image, quantity, title, price } = props.item
 
   const classes = useStyles()
@@ -37,19 +38,11 @@ const CartItem = (props) => {
           <Typography className={classes.title}>{title}</Typography>
           <Typography>{`${quantity} pcs.`}</Typography>
         </div>
-        <Typography>
-          {currency === 'USD'
-            ? ` $${price.USD}`
-            : currency === 'CAD'
-            ? `CAN$${price.CAD}`
-            : currency === 'EUR'
-            ? ` €${price.EUR}`
-            : ` $${price.USD}`}
-        </Typography>
+        <Typography>{returnPriceWithCurrency(currency, price)}</Typography>
       </div>
       <Divider />
     </>
   )
 }
 
-export default CartItem
+export default CartPopoverItem

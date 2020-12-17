@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import { makeStyles } from '@material-ui/core/styles'
 import { Drawer as DrawerMui, ListItemIcon } from '@material-ui/core/'
+import { useHistory } from 'react-router-dom'
 
 import Divider from '@material-ui/core/Divider'
 import ListItem from '@material-ui/core/ListItem'
@@ -33,6 +34,7 @@ const useStyles = makeStyles({
 const Drawer = () => {
   const classes = useStyles()
   const [state, setState] = useState(false)
+  let history = useHistory()
 
   return (
     <div>
@@ -52,7 +54,7 @@ const Drawer = () => {
           </IconButton>
         </div>
         <Divider />
-        <ListItem button key='Home'>
+        <ListItem onClick={() => history.push('/')} button key='Home'>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>

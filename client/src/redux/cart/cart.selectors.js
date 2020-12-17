@@ -27,7 +27,7 @@ export const selectCartTotal = createSelector(
         0
       )
 
-      return `$${priceWithCurrency}`
+      return `$${priceWithCurrency.toFixed(2)}`
     }
 
     if (currency === 'CAD') {
@@ -35,7 +35,7 @@ export const selectCartTotal = createSelector(
         (acc, rec) => acc + rec.quantity * rec.price.CAD,
         0
       )
-      return `CAN$${priceWithCurrency}`
+      return `CAN$${priceWithCurrency.toFixed(2)}`
     }
 
     if (currency === 'EUR') {
@@ -43,7 +43,7 @@ export const selectCartTotal = createSelector(
         (acc, rec) => acc + rec.quantity * rec.price.EUR,
         0
       )
-      return `€${priceWithCurrency}`
+      return `€${priceWithCurrency.toFixed(2)}`
     }
   }
 )

@@ -22,7 +22,7 @@ const useStyles = makeStyles({
 const Main = () => {
   const theme = useTheme()
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
 
   let limit = 30
   if (isMobile) limit = 10

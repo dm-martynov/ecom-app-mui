@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Button, Popover as PopoverMUI, Typography } from '@material-ui/core/'
 import { useHistory } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import CartItem from '../../CheckoutPage/CheckoutPopupItem'
+import CartPopoverItem from '../../CheckoutPage/CartPopoverItem'
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -45,7 +45,7 @@ const CartPopover = (props) => {
       <div style={{ maxHeight: 342, overflow: 'auto' }}>
         {cartItems.length ? (
           cartItems.map((cartItem) => {
-            return <CartItem key={cartItem.id} item={cartItem} />
+            return <CartPopoverItem key={cartItem.id} item={cartItem} />
           })
         ) : (
           <Typography
