@@ -1,3 +1,4 @@
+import AuthActionTypes from '../auth/auth.types'
 import { CartActionTypes } from './cart.types'
 import { addItemToCart, removeItemFromCart } from './cart.utils'
 
@@ -19,7 +20,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
           (cartItem) => cartItem.id !== action.payload.id
         ),
       }
-
+    case AuthActionTypes.SIGN_OUT_SUCCESS:
+      return INITIAL_STATE
     case CartActionTypes.REMOVE_ITEM:
       const newSt = {
         ...state,

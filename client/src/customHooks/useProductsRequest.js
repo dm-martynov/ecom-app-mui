@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProductsStart } from '../redux/products/products.actions'
 import {
@@ -32,16 +32,6 @@ const useProductsRequest = (skip, limit) => {
   const productsLoading = useSelector((state) => state.products.productsLoading)
   const hasMore = useSelector((state) => state.products.hasMore)
   const dispatch = useDispatch()
-
-  //////////////
-
-  //  useEffect(() => {
-  //   //  СМЕНА ВАЛЮТЫ ИЛИ СОРТИРОВКА
-  // DISPATCH(clearProductsArr)
-  //  }, [skip, limit, dispatch])
-
-  ////////
-
   useEffect(() => {
     dispatch(getProductsStart({ skip, limit }))
   }, [skip, limit, dispatch])

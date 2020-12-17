@@ -1,5 +1,11 @@
 export const addingProducts = (prevProducts, nextProducts) => {
-  return [...new Set([...prevProducts, ...nextProducts])]
+  const ids = new Set(prevProducts.map((product) => product.id))
+  const merged = [
+    ...prevProducts,
+    ...nextProducts.filter((product) => !ids.has(product.id)),
+  ]
+
+  return merged
 }
 
 export const returnPriceWithCurrency = (currentCurrency, pricesObj) => {

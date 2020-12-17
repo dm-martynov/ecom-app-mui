@@ -29,16 +29,14 @@ export const signUpSuccess = (userData) => ({
   payload: userData,
 })
 
-export const signOutStart = (emailAndPassword) => {
+export const signOutStart = () => {
   return {
     type: AuthActionTypes.SIGN_OUT_START,
-    payload: emailAndPassword,
   }
 }
 
-export const signOutSuccess = (userData) => ({
+export const signOutSuccess = () => ({
   type: AuthActionTypes.SIGN_OUT_SUCCESS,
-  payload: userData,
 })
 
 export const toggleAuthLoading = () => ({

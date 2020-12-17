@@ -1,3 +1,4 @@
+import AuthActionTypes from '../auth/auth.types'
 import productsActionTypes from './products.types'
 import { addingProducts } from './products.utils'
 
@@ -23,7 +24,8 @@ const productsReducer = (state = INITIAL_STATE, action) => {
           name: action.payload,
         },
       }
-
+    case AuthActionTypes.SIGN_OUT_SUCCESS:
+      return INITIAL_STATE
     case productsActionTypes.SORT_PRICE:
       return {
         ...state,

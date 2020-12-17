@@ -86,3 +86,11 @@ export const paymentRequest = async (stripePrice, token, currency) => {
     return error
   }
 }
+
+export const signOutRequest = async () => {
+  try {
+    await cookies.remove('jwt-token')
+  } catch (error) {
+    return error
+  }
+}

@@ -1,8 +1,13 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects'
 
 import AuthActionTypes from './auth.types'
-import { signInRequest, signUpRequest } from '../../api/api'
-import { authFailure, signInSuccess, toggleAuthLoading } from './auth.actions'
+import { signInRequest, signOutRequest, signUpRequest } from '../../api/api'
+import {
+  authFailure,
+  signInSuccess,
+  signOutSuccess,
+  toggleAuthLoading,
+} from './auth.actions'
 import { push } from 'connected-react-router'
 import { getProductsStart } from '../products/products.actions'
 
@@ -38,14 +43,14 @@ export function* signIn({ payload: { email, password } }) {
 //   }
 // }
 
-// export function* signOut() {
-//   try {
-//     yield auth.signOut()
-//     yield put(signOutSuccess())
-//   } catch (error) {
-//     yield put(signOutFailure(error))
-//   }
-// }
+export function* signOut() {
+  try {
+    yield signOutRequest()
+    yield put(signOutSuccess())
+  } catch (error) {
+    yield put(authFailure(error))
+  }
+}
 
 export function* signUp({ payload: { name, email, password } }) {
   try {
@@ -63,9 +68,9 @@ export function* signUp({ payload: { name, email, password } }) {
 //   yield takeLatest(AuthActionTypes.CHECK_USER_SESSION, isUserAuthenticated)
 // }
 
-// export function* onSignOutStart() {
-//   yield takeLatest(AuthActionTypes.SIGN_OUT_START, signOut)
-// }
+export function* onSignOutStart() {
+  yield takeLatest(AuthActionTypes.SIGN_OUT_START, signOut)
+}
 export function* onSignInStart() {
   yield takeLatest(AuthActionTypes.SIGN_IN_START, signIn)
 }
@@ -75,10 +80,5 @@ export function* onSignUpStart() {
 }
 
 export function* authSagas() {
-  yield all([
-    call(onSignInStart),
-    // call(onCheckUserSession),
-    // call(onSignOutStart),
-    call(onSignUpStart),
-  ])
+  yield all([call(onSignInStart), call(onSignOutStart), call(onSignUpStart)])
 }

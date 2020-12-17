@@ -8,6 +8,9 @@ import Drawer from './Drawer/Drawer'
 import HomeIcon from '@material-ui/icons/Home'
 import DesktopSorting from './DesktopSorting'
 import { useHistory } from 'react-router-dom'
+import SignOut from './SignOut'
+import { useDispatch } from 'react-redux'
+import { toggleProductsLoading } from '../../redux/products/products.actions'
 const useStyles = makeStyles((theme) => ({
   Toolbar: {
     alignContent: 'center',
@@ -25,7 +28,7 @@ const Header = () => {
   const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const history = useHistory()
-
+  const dispatch = useDispatch()
   return (
     <AppBar position='fixed'>
       <Toolbar className={classes.Toolbar}>
@@ -33,6 +36,7 @@ const Header = () => {
           <>
             <Drawer />
             <div style={{ flexGrow: 1 }}></div>
+            <SignOut />
             <CartIconComponent />
           </>
         ) : (
@@ -41,15 +45,18 @@ const Header = () => {
               size='large'
               color='inherit'
               startIcon={<HomeIcon fontSize='large' />}
-              onClick={() => history.push('/')}
+              onClick={() => {
+                history.push('/')
+              }}
             >
               Home
             </Button>
             <div style={{ flexGrow: 1 }}></div>
             <DesktopSorting />
-            <div style={{ flexGrow: 1 }}></div>
 
             <CurrencySelector />
+            <div style={{ flexGrow: 1 }}></div>
+            <SignOut />
             <CartIconComponent />
           </>
         )}

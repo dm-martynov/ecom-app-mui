@@ -40,6 +40,10 @@ const useStyles = makeStyles({
     alignItems: 'center',
     fontWeight: 600,
   },
+  button: {
+    margin: [[15, 'auto']],
+    marginBottom: 30,
+  },
 })
 
 const MobileCheckoutView = () => {
@@ -53,7 +57,7 @@ const MobileCheckoutView = () => {
     <div style={{ marginTop: 65 }}>
       {cartProducts.map((product) => {
         return (
-          <Paper>
+          <Paper key={product.id}>
             <div className={classes.itemContainer}>
               <div>
                 <img alt='' src={product.image} style={{ width: 150 }} />
@@ -95,15 +99,14 @@ const MobileCheckoutView = () => {
       <Typography style={{ marginTop: 15 }} variant='h6'>
         TOTAL: {total}
       </Typography>
-      <div className='test-warning' style={{ marginTop: 15 }}>
+      <div className='test-warning' style={{ marginTop: 15, color: 'red' }}>
         *Please use the following test credit card for payments
         <br />
         4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
       </div>
-      <StripeCheckoutButton
-        style={{ marginTop: 20, width: '20%' }}
-        price={total}
-      />
+      <div className={classes.button}>
+        <StripeCheckoutButton price={total} />
+      </div>
     </div>
   )
 }

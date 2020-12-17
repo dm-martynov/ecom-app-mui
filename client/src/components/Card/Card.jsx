@@ -61,7 +61,7 @@ const styles = {
   },
 }
 const Card = (props) => {
-  const { description, image, title } = props
+  const { description, image, title, gettingProductsTrigger } = props
   const classes = useStyles()
   const [state, setstate] = React.useState(false)
   const [isRisen, setRaised] = React.useState(false)
@@ -98,7 +98,7 @@ const Card = (props) => {
             {description}
           </Typography>
         </CardActionArea>
-        <div className={classes.buttonsContainer}>
+        <div ref={gettingProductsTrigger} className={classes.buttonsContainer}>
           <hr className={classes.hr} />
           <PriceAndCart {...props} />
         </div>

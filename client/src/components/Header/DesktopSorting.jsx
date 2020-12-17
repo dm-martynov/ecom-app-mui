@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
   listItemInitial: { color: 'rgba(0, 0, 0, 0.42)' },
   listItemClicked: { backgroundColor: 'rgba(0, 0, 0, 0.08)' },
   arrowDisabled: {
-    color: 'rgba(0, 0, 0, 0.5)',
+    color: 'rgba(255,255,255, 0.7)',
   },
   iconInitial: {
     transition: '0.7s',
   },
   buttonDisabled: {
-    color: 'rgba(0, 0, 0, 0.65)',
+    color: 'rgba(255,255,255, 0.7)',
   },
   buttonEnabled: {
     backgroundColor: 'rgba(0, 0, 0, 0.15)',

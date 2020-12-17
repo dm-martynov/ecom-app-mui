@@ -31,6 +31,9 @@ const useStyles = makeStyles({
     marginTop: 125,
   },
   total: {},
+  button: {
+    margin: [[15, 'auto']],
+  },
 })
 
 const DesktopCheckoutView = () => {
@@ -120,15 +123,14 @@ const DesktopCheckoutView = () => {
         </Table>
       </TableContainer>
 
-      <div className='test-warning' style={{ marginTop: 30 }}>
+      <div className='test-warning' style={{ marginTop: 30, color: 'red' }}>
         *Please use the following test credit card for payments
         <br />
         4242 4242 4242 4242 - Exp: 01/23 - CVV: 123
       </div>
-      <StripeCheckoutButton
-        style={{ marginTop: 20, width: '20%' }}
-        price={total}
-      />
+      <div className={classes.button}>
+        <StripeCheckoutButton price={total} />
+      </div>
     </>
   )
 }

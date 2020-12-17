@@ -16,11 +16,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         error: null,
       }
     case AuthActionTypes.SIGN_OUT_SUCCESS:
-      return {
-        ...state,
-        currentUser: null,
-        error: null,
-      }
+      return INITIAL_STATE
     case AuthActionTypes.AUTH_FAILURE:
       return {
         ...state,

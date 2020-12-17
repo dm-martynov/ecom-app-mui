@@ -1,9 +1,4 @@
-import {
-  CircularProgress,
-  Grid,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core'
+import { CircularProgress, Grid, useTheme } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import React, { useRef, useState, useCallback } from 'react'
 import Card from '../components/Card/Card'
@@ -22,10 +17,8 @@ const useStyles = makeStyles({
 const Main = () => {
   const theme = useTheme()
 
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
+  let limit = 15
 
-  let limit = 30
-  if (isMobile) limit = 10
   const classes = useStyles()
   const [skip, setSkip] = useState(0)
   const { productsLoading, products, hasMore } = useProductsRequest(skip, limit)
@@ -37,8 +30,9 @@ const Main = () => {
       if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver(
         (entries) => {
-          if (entries[0].isIntersecting && hasMore)
+          if (entries[0].isIntersecting && hasMore) {
             setSkip((prevSkip) => prevSkip + limit)
+          }
         },
         { threshold: 1 }
       )
@@ -52,22 +46,29 @@ const Main = () => {
       <Header />
 
       <Grid container className={classes.gridContainer} spacing={3}>
-        {products.map((item) => {
-          return (
-            <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
-              <Card {...item} />
-            </Grid>
-          )
+        {products.map((item, index) => {
+          if (products.length === index + 1) {
+            return (
+              <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
+                <Card
+                  gettingProductsTrigger={gettingProductsTrigger}
+                  {...item}
+                />
+              </Grid>
+            )
+          } else {
+            return (
+              <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
+                <Card {...item} />
+              </Grid>
+            )
+          }
         })}
 
         {productsLoading && (
           <Grid item xs={12} lg={12}>
             <CircularProgress />
           </Grid>
-        )}
-
-        {products && !productsLoading && hasMore && (
-          <div ref={gettingProductsTrigger}></div>
         )}
       </Grid>
     </>
