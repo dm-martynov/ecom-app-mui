@@ -15,7 +15,7 @@ export const getRates = async () => {
   return response.data
 }
 
-export const signUpRequest = async (name, email, password) => {
+export const signUpRequest = async ([name, email, password]) => {
   try {
     const response = await instance.post('user/register', {
       name: name,
@@ -25,11 +25,11 @@ export const signUpRequest = async (name, email, password) => {
 
     return response.data
   } catch (error) {
-    return error
+    return error.response
   }
 }
 
-export const signInRequest = async (email, password) => {
+export const signInRequest = async ([email, password]) => {
   try {
     const response = await instance.post('user/login', {
       email: email,
@@ -43,7 +43,7 @@ export const signInRequest = async (email, password) => {
       email: response.data.email,
     }
   } catch (error) {
-    return error
+    return error.response
   }
 }
 

@@ -67,8 +67,13 @@ export default function SignIn() {
         }
         return errors
       }}
-      onSubmit={(values) => {
+      onSubmit={(
+        values,
+        { setSubmitting, setErrors, resetForm, setValues }
+      ) => {
         dispatch(signInStart(values))
+        setSubmitting(false)
+        resetForm()
       }}
     >
       {({ submitForm, isSubmitting, touched, errors }) => (

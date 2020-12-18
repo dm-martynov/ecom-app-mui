@@ -49,7 +49,7 @@ const Main = () => {
         {products.map((item, index) => {
           if (products.length === index + 1) {
             return (
-              <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
+              <Grid key={item.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
                 <Card
                   gettingProductsTrigger={gettingProductsTrigger}
                   {...item}
@@ -58,7 +58,7 @@ const Main = () => {
             )
           } else {
             return (
-              <Grid key={item.id} item xs={12} sm={6} md={4} lg={2}>
+              <Grid key={item.id} item xs={12} sm={6} md={4} lg={3} xl={2}>
                 <Card {...item} />
               </Grid>
             )

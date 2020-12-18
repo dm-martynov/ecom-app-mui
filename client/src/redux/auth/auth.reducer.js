@@ -27,6 +27,11 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: !state.loading,
       }
+    case AuthActionTypes.REMOVE_ERROR:
+      return {
+        ...state,
+        error: null,
+      }
 
     default:
       return state

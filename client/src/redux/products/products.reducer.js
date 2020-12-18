@@ -64,6 +64,11 @@ const productsReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hasMore: !state.hasMore,
       }
+    case AuthActionTypes.REMOVE_ERROR:
+      return {
+        ...state,
+        error: null,
+      }
 
     default:
       return state

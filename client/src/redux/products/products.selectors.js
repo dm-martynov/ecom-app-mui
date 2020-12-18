@@ -8,6 +8,10 @@ export const selectProductsArr = createSelector(
   [selectProducts],
   (products) => products.productsArr
 )
+export const selectProductsError = createSelector(
+  [selectProducts],
+  (products) => products.error
+)
 
 export const selectCurrentCurrency = createSelector(
   [selectProducts],

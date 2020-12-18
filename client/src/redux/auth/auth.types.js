@@ -8,6 +8,7 @@ const AuthActionTypes = {
   SIGN_UP_SUCCESS: 'SIGN_UP_SUCCESS',
   AUTH_FAILURE: 'AUTH_FAILURE',
   TOGGLE_AUTH_LOADING: 'TOGGLE_AUTH_LOADING',
+  REMOVE_ERROR: 'REMOVE_ERROR',
 }
 
 export default AuthActionTypes

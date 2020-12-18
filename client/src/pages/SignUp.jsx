@@ -81,8 +81,13 @@ const SignUp = () => {
         }
         return errors
       }}
-      onSubmit={(values) => {
+      onSubmit={(
+        values,
+        { setSubmitting, setErrors, resetForm, setValues }
+      ) => {
         dispatch(signUpStart(values))
+        setSubmitting(false)
+        resetForm()
       }}
     >
       {({ submitForm, isSubmitting, touched, errors }) => (

@@ -42,3 +42,9 @@ export const signOutSuccess = () => ({
 export const toggleAuthLoading = () => ({
   type: AuthActionTypes.TOGGLE_AUTH_LOADING,
 })
+
+export const removeError = () => {
+  return {
+    type: AuthActionTypes.REMOVE_ERROR,
+  }
+}

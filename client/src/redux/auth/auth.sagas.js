@@ -9,7 +9,6 @@ import {
   toggleAuthLoading,
 } from './auth.actions'
 import { push } from 'connected-react-router'
-import { getProductsStart } from '../products/products.actions'
 
 // export function* getSnapshotFromUserAuth(userAuth) {
 //   try {
@@ -22,14 +21,15 @@ import { getProductsStart } from '../products/products.actions'
 // }
 
 export function* signIn({ payload: { email, password } }) {
-  try {
-    yield put(toggleAuthLoading())
-    const userData = yield signInRequest(email, password)
-    yield put(signInSuccess(userData))
+  yield put(toggleAuthLoading())
+  const response = yield call(signInRequest, [email, password])
+  if (response.status !== 400) {
+    yield put(signInSuccess(response))
     yield put(toggleAuthLoading())
     yield put(push('/'))
-  } catch (error) {
-    yield put(authFailure(error))
+  } else {
+    yield put(authFailure(response.data))
+    yield put(toggleAuthLoading())
   }
 }
 
@@ -53,14 +53,15 @@ export function* signOut() {
 }
 
 export function* signUp({ payload: { name, email, password } }) {
-  try {
-    yield put(toggleAuthLoading())
-    yield signUpRequest(name, email, password)
+  yield put(toggleAuthLoading())
+  const response = yield call(signUpRequest, [name, email, password])
+  if (response.status !== 400) {
     yield put(toggleAuthLoading())
 
     yield put(push('/sign-in'))
-  } catch (error) {
-    yield put(authFailure(error))
+  } else {
+    yield put(authFailure(response.data))
+    yield put(toggleAuthLoading())
   }
 }
 
