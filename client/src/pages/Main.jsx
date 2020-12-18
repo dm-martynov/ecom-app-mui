@@ -32,7 +32,7 @@ const Main = () => {
             setSkip((prevSkip) => prevSkip + limit)
           }
         },
-        { threshold: 1 }
+        { threshold: 0.5 }
       )
       if (node) observer.current.observe(node)
     },
