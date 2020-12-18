@@ -29,8 +29,11 @@ import { getProductsRequest } from '../../api/api'
 
 export function* getProducts({ payload: { limit, skip } }) {
   try {
+    console.log(limit, skip)
+
     yield put(toggleProductsLoading())
     const products = yield getProductsRequest(limit, skip)
+    console.log(products)
     if (products.length) {
       yield put(getProductsSuccess(products))
     } else {

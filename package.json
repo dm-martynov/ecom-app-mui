@@ -1,7 +1,6 @@
 {
   "name": "mui-ecom-app",
   "version": "1.0.0",
-  "main": "server.js",
   "license": "MIT",
   "scripts": {
     "client": "cd client && yarn start",

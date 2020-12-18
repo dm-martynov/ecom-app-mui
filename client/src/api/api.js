@@ -58,9 +58,11 @@ export const getProductsRequest = async (limit, skip) => {
       },
       params: { skip: skip, limit: limit },
     })
-
+    console.log('products', response)
     return response.data
   } catch (error) {
+    console.log('products err', error)
+
     return error
   }
 }
