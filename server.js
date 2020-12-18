@@ -8,6 +8,7 @@ const passport = require('passport')
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const path = require('path')
+const serveStatic = require('serve-static')
 
 if (process.env.NODE_ENV !== 'production') require('dotenv').config()
 
@@ -21,12 +22,8 @@ app.use(
 app.use(cookieParser())
 app.use(passport.initialize())
 app.use(passport.session())
-
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, 'client/build')))
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/build', 'index.html'))
-  })
+  app.use(serveStatic(__dirname + '/client/build'))
 }
 
 require('./services/passport')(passport)
