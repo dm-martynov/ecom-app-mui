@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie'
 const cookies = new Cookies()
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:5000/api/',
+  baseURL: 'api/',
 })
 
 export const getRates = async () => {
