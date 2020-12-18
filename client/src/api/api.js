@@ -35,6 +35,7 @@ export const signInRequest = async ([email, password]) => {
       email: email,
       password: password,
     })
+    console.log('response', response)
 
     cookies.set('jwt-token', response.data.token, { path: '/', maxAge: 172800 })
     return {
@@ -43,6 +44,7 @@ export const signInRequest = async ([email, password]) => {
       email: response.data.email,
     }
   } catch (error) {
+    console.log('error', error)
     return error.response
   }
 }
