@@ -11,9 +11,10 @@ import { history } from './redux/store'
 import { useSelector } from 'react-redux'
 import CheckoutPage from './pages/CheckoutPage'
 import ErrorPopUp from './components/Error/ErrorPopUp'
+import { selectCurrentUser } from './redux/auth/auth.selectors'
 
 const App = () => {
-  const currentUser = useSelector((state) => state.auth.currentUser)
+  const currentUser = useSelector(selectCurrentUser)
 
   return (
     <ConnectedRouter history={history}>

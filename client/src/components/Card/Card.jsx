@@ -10,7 +10,7 @@ import {
 import PriceAndCart from './PriceAndCart'
 import { withStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     minWidth: 275,
     borderWidth: 2,
@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
   },
   descriptionClicked: { lineHeight: '1.5em', minHeight: '9em' },
-}))
+})
 
 const styles = {
-  cardcontent: {
+  cardContent: {
     height: '100%',
     paddingLeft: 10,
     paddingRight: 10,
@@ -63,10 +63,10 @@ const styles = {
 const Card = (props) => {
   const { description, image, title, gettingProductsTrigger } = props
   const classes = useStyles()
-  const [state, setstate] = React.useState(false)
+  const [state, setState] = React.useState(false)
   const [isRisen, setRaised] = React.useState(false)
   const handleClick = () => {
-    setstate(!state)
+    setState(!state)
   }
   return (
     <MuiCard
@@ -75,7 +75,7 @@ const Card = (props) => {
       raised={isRisen}
       className={classes.root}
     >
-      <CardContent className={props.classes.cardcontent}>
+      <CardContent className={props.classes.cardContent}>
         <CardActionArea onClick={handleClick}>
           <CardMedia component='img' className={classes.media} image={image} />
           <Typography

@@ -1,4 +1,4 @@
-import { CircularProgress, Grid, useTheme } from '@material-ui/core'
+import { CircularProgress, Grid } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import React, { useRef, useState, useCallback } from 'react'
 import Card from '../components/Card/Card'
@@ -15,8 +15,6 @@ const useStyles = makeStyles({
 })
 
 const Main = () => {
-  const theme = useTheme()
-
   let limit = 15
 
   const classes = useStyles()
@@ -40,11 +38,10 @@ const Main = () => {
     },
     [productsLoading, hasMore, limit]
   )
-  // useEffect(() => {}, [dispatch, skip, limit])
+
   return (
     <>
       <Header />
-
       <Grid container className={classes.gridContainer} spacing={3}>
         {products.map((item, index) => {
           if (products.length === index + 1) {
