@@ -23,7 +23,6 @@ import { push } from 'connected-react-router'
 export function* signIn({ payload: { email, password } }) {
   yield put(toggleAuthLoading())
   const response = yield call(signInRequest, [email, password])
-  console.log(response)
   if (response.status !== 400) {
     yield put(signInSuccess(response))
     yield put(toggleAuthLoading())
@@ -56,7 +55,6 @@ export function* signOut() {
 export function* signUp({ payload: { name, email, password } }) {
   yield put(toggleAuthLoading())
   const response = yield call(signUpRequest, [name, email, password])
-  console.log(response)
   if (response.status !== 400) {
     yield put(toggleAuthLoading())
 

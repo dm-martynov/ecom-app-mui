@@ -23,26 +23,6 @@ const StripeCheckoutButton = ({ price }) => {
 
   const onToken = (token) => {
     dispatch(paymentStart({ stripePrice, token, currency }))
-    // axios
-    //   .post(
-    //     'http://localhost:5000/api/payment',
-
-    //     {
-    //       amount: stripePrice,
-    //       token,
-    //       currency,
-    //     }
-    //   )
-    //   .then((response) => {
-    //     alert('Payment successful')
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //     alert(
-    //       'There was an issue with your payment. Please make sure you use the provided credit card'
-    //     )
-    //   })
-    // alert('Payment Successful')
   }
   return (
     <StripeCheckout

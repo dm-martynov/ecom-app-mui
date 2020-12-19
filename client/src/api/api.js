@@ -35,7 +35,6 @@ export const signInRequest = async ([email, password]) => {
       email: email,
       password: password,
     })
-    console.log('response', response)
 
     cookies.set('jwt-token', response.data.token, { path: '/', maxAge: 172800 })
     return {
@@ -44,7 +43,6 @@ export const signInRequest = async ([email, password]) => {
       email: response.data.email,
     }
   } catch (error) {
-    console.log('error', error)
     return error.response
   }
 }
@@ -58,11 +56,8 @@ export const getProductsRequest = async (limit, skip) => {
       },
       params: { skip: skip, limit: limit },
     })
-    console.log('products', response)
     return response.data
   } catch (error) {
-    console.log('products err', error)
-
     return error
   }
 }
